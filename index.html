@@ -1,21 +1,262 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Coding Magic</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
     <header>
+        <nav>
+            <ul>
+                <li><button id="header-main-btn" class="header-main-btn"></button></li>
+                <li id="interacts">
+                    <button class="interact-filter" id="interact-filter">Інтерактив</button>
+                    <div id="games-filter">
+                        <button id="game-int">Числовий</button>
+                        <button id="game-game">Ігровий</button>
+                        <button id="game-exploratory">Ознайомчий</button>
+                    </div>
+                </li>
+                <li><button class="our-team">Наша команда</button></li>
+                <li><button class="contacts">Контакти</button></li>
+                <li><input class="theme-btn" id="theme-btn" type="checkbox"></li>
+                <li><p id="user-hello" class="user-hello">Вітаємо, User!</p></li>
+                <li><button class="filter-menu" id="filter-menu"></button></li>
+            </ul>
+        </nav>
 
+        <!-- <form id="welcome-modal" class="welcome-modal">
+            <div id="welcome-modal-window" class="welcome-modal-window">
+                <p>
+                    Привіт!<br>
+                    Ви потрапили на сайт інтерактивних ігор та завдань<br>
+                    Надіємось, що вам сподобається і ви отримаєте позитивні емоції!<br>
+                    Бажаємо Вам гарно провести час!
+                </p>
+                <p>Введіть своє ім’я:</p>
+                <input type="text" id="name-input">
+                <button id="welcome-modal-submit" type="submit">Зберегти</button>
+            </div>
+        </form> -->
+
+        <div id="filter-menu-modal">
+            <div id="filter-menu-modal-window">
+                <button id="game-int-mobile">Числовий</button>
+                <button id="game-game-mobile">Ігровий</button>
+                <button id="game-exploratory-mobile">Ознайомчий</button>
+            </div>
+        </div>
     </header>
+
     <main>
+        <section class="container_title">
+            <p class="main_title">Популярні інетрактивні ігри</p>
+        </section>
+
+        <section class="container_birthday">
+            <p class="title_birthday">Перевір в який рік ти народився</p>
+            <div class="container_birthday_inner">
+                <div class="input_wraper">
+                    <input class="input_birthday" placeholder="Введіть рік народження" type="text">
+                    <button class="birthday_search_btn">
+                        <svg class="icon">
+                            <use href="/img/symbol-defs.svg#magnifying-glass"></use>
+                        </svg>
+                    </button>
+                </div>
+                <p class="green red" id="text_birthday"></p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h1>Калькулятор</h1>
+
+                <div class="inputs-row">
+                    <div class="input-wrapper shadow-input">
+                        <input id="num1" type="text" placeholder="Введіть число">
+                    </div>
+
+                    <div class="buttons-group">
+                        <button class="circle-btn">+</button>
+                        <button class="circle-btn">*</button>
+                        <button class="circle-btn">-</button>
+                        <button class="circle-btn">/</button>
+                    </div>
+
+                    <div class="input-wrapper shadow-input">
+                        <input id="num2" type="text" placeholder="Введіть число">
+                    </div>
+
+                    <button class="circle-btn" id="equals">=</button>
+
+                    <div class="input-wrapper shadow-input result-input">
+                        <input id="result" type="text" placeholder="Результат" readonly>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="timecalc-section">
+            <div class="timecalc-centered">
+                <h1>Калькулятор часу</h1>
+                <div class="timecalc-input-result-row">
+                    <div class="timecalc-search-wrapper">
+                        <input type="text" id="timecalc-minutesInput" placeholder="Введіть число">
+                        <div class="timecalc-search-button" id="timecalc-button">
+                            <svg class="icon">
+                                <use href="/img/symbol-defs.svg#magnifying-glass"></use>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="timecalc-dashed-line"></div>
+                    <div id="timecalc-result">3 дн. 15:45:01</div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="dino-container">
+                <h1 class="h1">Google динозавр</h1>
+                <div class="game-field">
+                    <img src="/img/dinosaur/dino-google.png" alt="Dino" class="dino-image">
+                    <img src="/img/dinosaur/google-ground.png" alt="Ground" class="ground-image">
+                    <img src="/img/dinosaur/google-cactus.png" alt="Cactus" class="cactus-image1">
+                    <img src="/img/dinosaur/google-cactus.png" alt="Cactus" class="cactus-image2">
+                    <img src="/img/dinosaur/google-cactus.png" alt="Cactus" class="cactus-image3">
+                    <div class="message" id="message">Ви програли</div>
+                </div>
+                <button class="start-btn" id="startBtn">Почати гру</button>
+            </div>
+        </section>
+
+        <section class="football">
+            <h2 class="title">Футбол</h2>
+            <div class="field">
+                <div class="mid-line"></div>
+                <div class="center-circle"></div>
+                <div class="ball" id="ball"></div>
+                <div class="gate"></div>
+            </div>
+            <div class="score-board">Голів забито: <span id="score">0</span></div>
+        </section>
+
+        <section class="max-number">
+            <h2 class="title">Введіть 3 числа</h2>
+            <div class="inputs">
+                <input type="number" id="max-num1" placeholder="Введіть число">
+                <input type="number" id="max-num2" placeholder="Введіть число">
+                <input type="number" id="max-num3" placeholder="Введіть число">
+            </div>
+            <div class="result">
+                Найбільше число, яке ви ввели - <span id="max-number">?</span>
+            </div>
+        </section>
+
+        <section class="container_number_guess">
+            <div class="container_number_guess_inner">
+                <p class="title_number_guess">Вгадай число, яке загадав комп’ютер</p>
+                <div class="container_main_number_guess">
+                    <div class="input_wraper_number_guess">
+                        <input class="input_number_guess" placeholder="Введіть число" type="text">
+                        <button class="number_guess_search_btn">
+                            <svg class="icon">
+                                <use href="/img/symbol-defs.svg#magnifying-glass"></use>
+                            </svg>
+                        </button>
+                    </div>
+                    <p class="green_number_guess red_number_guess" id="text_number_guess"></p>
+                </div>
+            </div>
+            <div class="container_attempt">
+                <p class="text_attempt">Спроби: <span class="count_attempts">3</span></p>
+            </div>
+        </section>
+
+        <section class="team-section">
+            <h2 class="team-title">Наша команда</h2>
+
+            <div class="slider">
+                <div class="slides">
+                    <div class="slide active">
+                        <div class="member-photo">
+                            <span class="member-initials">СХ</span>
+                        </div>
+                        <h3 class="member-name">Сергій Харипончук</h3>
+                        <p class="member-role">Розробник</p>
+                        <p class="member-info">Відповідав за розробку та налаштування всього проєкту.</p>
+                    </div>
+                    <div class="slide">
+                        <div class="member-photo">
+                            <span class="member-initials">АФ</span>
+                        </div>
+                        <h3 class="member-name">Артем Фауст</h3>
+                        <p class="member-role">Вчитель</p>
+                        <p class="member-info">Допомагав і перевіряв логіку JavaScript.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container_rock_paper_scissors">
+                <div class="container_rock_paper_scissors_inner">
+                    <div class="left_block_rock_paper_scissors">
+                        <h2 class="title_rock_paper_scissors">Камінь - ножиці - папір</h2>
+                        <div class="images_rock_paper_scissors">
+                            <ul>
+                                <li>
+                                    <button>
+                                        <svg class="stone">
+                                            <use href="/img/symbol-defs.svg#stone"></use>
+                                        </svg>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button>
+                                        <svg class="scissors">
+                                            <use href="/img/symbol-defs.svg#scissors"></use>
+                                        </svg>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button>
+                                        <svg class="paper">
+                                            <use href="/img/symbol-defs.svg#paper"></use>
+                                        </svg>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="container_answers">
+                            <svg class="my_answer"><use href=""></use></svg>
+                            <p class="compare">&</p>
+                            <svg class="comp_answer"><use href=""></use></svg>
+                        </div>
+                        <p class="green_rock_paper_scissors red_rock_paper_scissors" id="text_rock_paper_scissors"></p>
+                        <button class="btn_rock_paper_scissors">Варіант комп’ютера</button>
+                    </div>
+                </div>
+                <div class="container_results_rock_paper_scissors">
+                    <p class="score_rock_paper_scissors">Рахунок:</p>
+                    <p class="computer_score_rock_paper_scissors">
+                        Комп’ютер - <span class="my_score">0</span>
+                    </p>
+                    <p class="my_score_rock_paper_scissors">
+                        Ви - <span class="comp_score">0</span>
+                    </p>
+                    <button class="btn_continue">Наступний раунд</button>
+                </div>
+            </div>
+        </section>
 
         <section class="scientists">
             <h3 class="scientists-title">Обери вченого/их</h3>
+
             <ul class="scientists-list">
                 <li class="scientists-item"></li>
                 <li class="scientists-item"></li>
@@ -30,31 +271,71 @@
                 <li class="scientists-item"></li>
                 <li class="scientists-item"></li>
             </ul>
+
             <ul class="scientists-btn-list">
-                <li class="scientists-btn-item"><button id="btn-1" class="scientists-btn">Які вчені народилися в 19 ст.</button>
+                <li class="scientists-btn-item">
+                    <button id="s-born-19" class="scientists-btn">Які вчені народилися в 19 ст.</button>
                 </li>
-                <li class="scientists-btn-item"><button id="btn-2" class="scientists-btn">Відсортувати вчених за алфавітом</button>
+                <li class="scientists-btn-item">
+                    <button id="albert-born" class="scientists-btn">Знайти рік народження Albert Einstein</button>
                 </li>
-                <li class="scientists-btn-item"><button id="btn-3" class="scientists-btn">Відсортувати вчених за кількістю прожитих
-                        років</button></li>
-                <li class="scientists-btn-item"><button id="btn-4" class="scientists-btn">Знайти вченого, який народився
-                        найпізніше</button></li>
-                <li class="scientists-btn-item"><button id="btn-5" class="scientists-btn">Знайти рік народження Albert
-                        Einshtein</button></li>
-                <li class="scientists-btn-item"><button id="btn-6" class="scientists-btn">Знайти вчених, прізвища яких починаються
-                        на на літеру “С” </button></li>
-                <li class="scientists-btn-item"><button id="btn-7" class="scientists-btn">Видалити всіх вчених, ім’я яких
-                        починається на “А”</button></li>
-                <li class="scientists-btn-item"><button id="btn-8" class="scientists-btn">Знайти вченого, який прожив найдовше і
-                        вченого,
-                        який прожив найменше</button></li>
-                <li class="scientists-btn-item"><button id="btn-9" class="scientists-btn">Знайти вчених, в яких співпадають перші
-                        літери імені і прізвища</button></li>
+                <li class="scientists-btn-item">
+                    <button id="abc" class="scientists-btn">Відсортувати вчених за алфавітом</button>
+                </li>
+                <li class="scientists-btn-item">
+                    <button id="surname-c" class="scientists-btn">Знайти вчених, прізвища яких починаються на літеру “C”</button>
+                </li>
+                <li class="scientists-btn-item">
+                    <button id="longer-live" class="scientists-btn">Відсортувати вчених за кількістю прожитих років</button>
+                </li>
+                <li class="scientists-btn-item">
+                    <button id="name-a" class="scientists-btn">Видалити всіх вчених, ім’я яких починається на “А”</button>
+                </li>
+                <li class="scientists-btn-item">
+                    <button id="younger" class="scientists-btn">Знайти вченого, який народився найпізніше</button>
+                </li>
+                <li class="scientists-btn-item">
+                    <button id="older" class="scientists-btn">Знайти вченого, який прожив найдовше і вченого, який прожив найменше</button>
+                </li>
+                <li class="scientists-btn-item">
+                    <button id="a-a" class="scientists-btn">Знайти вчених, в яких співпадають перші літери імені і прізвища</button>
+                </li>
             </ul>
         </section>
     </main>
+
     <footer>
+        <ul id="nav">
+            <li><button type="button" id="footer-main-btn"></button></li>
+            <li>
+                <ul class="footer-contacts">
+                    <li>Тел: +38 (123) 456 78 9</li>
+                    <li>E-Mail: codingmagic@gmail.com</li>
+                    <li>Facebook: CodingMagic</li>
+                    <li>Twitter: CodingMagic</li>
+                    <li>Instagram: CodingMagic</li>
+                </ul>
+            </li>
+            <li>
+                <form id="subscribe-form">
+                    <input type="email" id="email-subscribe-input" placeholder="Ваша ел. адреса...">
+                    <button type="submit" class="subscribe-submit">Підписатись</button>
+                </form>
+                <p class="describe">*Підписавшись, Ви зможете отримувати інформацію про новинки на сайті</p>
+                <div id="subscribe-modal">
+                    <div id="subscribe-modal-window" class="subscribe-modal-window">
+                        <p>Дякую за підписку!</p>
+                        <img class="icon top-left" src="/img/footer/sword.svg" alt="">
+                        <img class="icon bottom-left" src="/img/footer/puzzle.svg" alt="">
+                        <img class="icon top-right" src="/img/footer/game-development.svg" alt="">
+                        <img class="icon bottom-right" src="/img/footer/tic-tac-toe.svg" alt="">
+                    </div>
+                </div>
+            </li>
+        </ul>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
     <script src="js/scientists.js"></script>
 </body>
 

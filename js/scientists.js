@@ -84,21 +84,102 @@ const scientists = [
         id: 12 
     } 
 ];
-const btn1 = document.querySelector("#btn-1");
+const bornIn19CenturyBtn = document.querySelector("#s-born-19");
+const albertBornBtn = document.querySelector("#albert-born");
+const sortByAlphabetBtn = document.querySelector("#abc");
+const surnameStartsWithCBtn = document.querySelector("#surname-c");
+const sortByLifetimeBtn = document.querySelector("#longer-live");
+const removeNameStartsWithABtn = document.querySelector("#name-a");
+const youngestScientistBtn = document.querySelector("#younger");
+const longestAndShortestLifeBtn = document.querySelector("#older");
+const sameFirstLettersBtn = document.querySelector("#a-a");
+
 const scientistsList = document.querySelector(".scientists-list");
-btn1.addEventListener("click" , (e) => {
-    const scientistsFilterBorn = scientists.filter(({born}) => born >= 1800 && born <= 1900)
-    scientistsRender(scientistsFilterBorn)
-})
+
+bornIn19CenturyBtn.addEventListener("click", () => {
+    const scientistsFilterBorn = scientists.filter(({ born }) => born >= 1800 && born <= 1900);
+
+    scientistsRender(scientistsFilterBorn);
+});
+
+sortByAlphabetBtn.addEventListener("click", () => {
+    const scientistsSortABC = [...scientists].sort((a, b) => 
+        a.name.localeCompare(b.name)
+    );
+
+    scientistsRender(scientistsSortABC);
+});
+
+sortByLifetimeBtn.addEventListener("click", () => {
+    const scientistsSortYears = [...scientists].sort((a, b) => 
+        (a.dead - a.born) - (b.dead - b.born)
+    );
+
+    scientistsRender(scientistsSortYears);
+});
+
+youngestScientistBtn.addEventListener("click", () => {
+    const scientistsLatestBorn = [...scientists].sort((a, b) => 
+        b.born - a.born
+    );
+
+    scientistsRender([scientistsLatestBorn[0]]);
+});
+
+albertBornBtn.addEventListener("click", () => {
+    const einsteinBorn = scientists.filter(scientist => 
+        scientist.name === "Albert"
+    );
+
+    scientistsRender(einsteinBorn);
+});
+
+surnameStartsWithCBtn.addEventListener("click", () => {
+    const scientistsLetterC = scientists.filter(scientist => 
+        scientist.surname[0] === "C"
+    );
+
+    scientistsRender(scientistsLetterC);
+});
+
+removeNameStartsWithABtn.addEventListener("click", () => {
+    const scientistsWithoutA = scientists.filter(scientist => 
+        scientist.name[0] !== "A"
+    );
+
+    scientistsRender(scientistsWithoutA);
+});
+
+longestAndShortestLifeBtn.addEventListener("click", () => {
+    const scientistsLife = [...scientists].sort((a, b) => 
+        (b.dead - b.born) - (a.dead - a.born)
+    );
+
+    const longestLife = scientistsLife[0];
+    const shortestLife = scientistsLife[scientistsLife.length - 1];
+
+    scientistsRender([longestLife, shortestLife]);
+});
+
+sameFirstLettersBtn.addEventListener("click", () => {
+    const sameFirstLetters = scientists.filter(scientist => 
+        scientist.name[0] === scientist.surname[0]
+    );
+
+    scientistsRender(sameFirstLetters);
+});
+
 function scientistsRender(scientistsFilterBorn) {
-    scientistsList.innerHTML = ""
-    const ss = scientistsFilterBorn.map(scientists => {
-        return   `<li id=${scientists.id} class="scientists-item">
-        <p class="scientists-ful-name">${scientists.name} ${scientists.surname}</p>
-<p class="scientists-live">${scientists.born}-${scientists.dead}</p></li>`;
-    })
-    .join("")
-    scientistsList.insertAdjacentHTML("beforeend", ss );
-    console.log(ss);
+    scientistsList.innerHTML = "";
+
+    const ss = scientistsFilterBorn.map(scientist => {
+        return `<li id=${scientist.id} class="scientists-item">
+        <p class="scientists-ful-name">${scientist.name} ${scientist.surname}</p>
+        <p class="scientists-live">${scientist.born}-${scientist.dead}</p>
+        </li>`;
+    }).join("");
+
+    scientistsList.insertAdjacentHTML("beforeend", ss);
 }
-console.log(btn1);
+
+scientistsRender(scientists);
