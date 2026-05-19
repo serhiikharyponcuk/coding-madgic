@@ -21,7 +21,7 @@
                 <li><button id="header-main-btn" class="header-main-btn"></button></li>
                 <li id="interacts">
                     <button class="interact-filter" id="interact-filter">Інтерактив</button>
-                    <div id="games-filter">
+                    <div id="games-filter" class="hidden">
                         <button id="game-int">Числовий</button>
                         <button id="game-game">Ігровий</button>
                         <button id="game-exploratory">Ознайомчий</button>
@@ -63,14 +63,14 @@
             <p class="main_title">Популярні інетрактивні ігри</p>
         </section>
 
-        <section class="container_birthday">
+        <section class="container_birthday" data-game-category="numeric">
             <p class="title_birthday">Перевір в який рік ти народився</p>
             <div class="container_birthday_inner">
                 <div class="input_wraper">
                     <input class="input_birthday" placeholder="Введіть рік народження" type="text">
                     <button class="birthday_search_btn">
                         <svg class="icon">
-                            <use href="/img/symbol-defs.svg#magnifying-glass"></use>
+                            <use href="./images/symbol-defs.svg#magnifying-glass"></use>
                         </svg>
                     </button>
                 </div>
@@ -78,7 +78,7 @@
             </div>
         </section>
 
-        <section>
+        <section data-game-category="numeric">
             <div class="container">
                 <h1>Калькулятор</h1>
 
@@ -107,7 +107,7 @@
             </div>
         </section>
 
-        <section class="timecalc-section">
+        <section class="timecalc-section" data-game-category="numeric">
             <div class="timecalc-centered">
                 <h1>Калькулятор часу</h1>
                 <div class="timecalc-input-result-row">
@@ -115,7 +115,7 @@
                         <input type="text" id="timecalc-minutesInput" placeholder="Введіть число">
                         <div class="timecalc-search-button" id="timecalc-button">
                             <svg class="icon">
-                                <use href="/img/symbol-defs.svg#magnifying-glass"></use>
+                                <use href="./images/symbol-defs.svg#magnifying-glass"></use>
                             </svg>
                         </div>
                     </div>
@@ -125,22 +125,21 @@
             </div>
         </section>
 
-        <section>
+        <section data-game-category="game">
             <div class="dino-container">
                 <h1 class="h1">Google динозавр</h1>
                 <div class="game-field">
-                    <img src="/img/dinosaur/dino-google.png" alt="Dino" class="dino-image">
-                    <img src="/img/dinosaur/google-ground.png" alt="Ground" class="ground-image">
-                    <img src="/img/dinosaur/google-cactus.png" alt="Cactus" class="cactus-image1">
-                    <img src="/img/dinosaur/google-cactus.png" alt="Cactus" class="cactus-image2">
-                    <img src="/img/dinosaur/google-cactus.png" alt="Cactus" class="cactus-image3">
+                    <img src="./images/dino.png" alt="Dino" class="dino-image">
+                    <img src="./images/cactus.png" alt="Cactus" class="cactus-image1">
+                    <img src="./images/cactus.png" alt="Cactus" class="cactus-image2">
+                    <img src="./images/cactus.png" alt="Cactus" class="cactus-image3">
                     <div class="message" id="message">Ви програли</div>
                 </div>
                 <button class="start-btn" id="startBtn">Почати гру</button>
             </div>
         </section>
 
-        <section class="football">
+        <section class="football" data-game-category="game">
             <h2 class="title">Футбол</h2>
             <div class="field">
                 <div class="mid-line"></div>
@@ -151,7 +150,7 @@
             <div class="score-board">Голів забито: <span id="score">0</span></div>
         </section>
 
-        <section class="max-number">
+        <section class="max-number" data-game-category="numeric">
             <h2 class="title">Введіть 3 числа</h2>
             <div class="inputs">
                 <input type="number" id="max-num1" placeholder="Введіть число">
@@ -163,7 +162,7 @@
             </div>
         </section>
 
-        <section class="container_number_guess">
+        <section class="container_number_guess" data-game-category="game">
             <div class="container_number_guess_inner">
                 <p class="title_number_guess">Вгадай число, яке загадав комп’ютер</p>
                 <div class="container_main_number_guess">
@@ -171,7 +170,7 @@
                         <input class="input_number_guess" placeholder="Введіть число" type="text">
                         <button class="number_guess_search_btn">
                             <svg class="icon">
-                                <use href="/img/symbol-defs.svg#magnifying-glass"></use>
+                                <use href="./images/symbol-defs.svg#magnifying-glass"></use>
                             </svg>
                         </button>
                     </div>
@@ -183,14 +182,17 @@
             </div>
         </section>
 
-        <section class="team-section">
+        <section class="team-section" data-game-category="exploratory">
             <h2 class="team-title">Наша команда</h2>
 
             <div class="slider">
+                <button class="arrow left" type="button" aria-label="Попередній учасник">
+                    <img src="./images/arrow-right.png" alt="">
+                </button>
                 <div class="slides">
                     <div class="slide active">
                         <div class="member-photo">
-                            <span class="member-initials">СХ</span>
+                            <img src="./images/visiteimg.png" alt="Сергій Харипончук">
                         </div>
                         <h3 class="member-name">Сергій Харипончук</h3>
                         <p class="member-role">Розробник</p>
@@ -205,62 +207,64 @@
                         <p class="member-info">Допомагав і перевіряв логіку JavaScript.</p>
                     </div>
                 </div>
+                <button class="arrow right" type="button" aria-label="Наступний учасник">
+                    <img src="./images/arrow-right.png" alt="">
+                </button>
             </div>
         </section>
 
-        <section>
+        <section data-game-category="game">
             <div class="container_rock_paper_scissors">
                 <div class="container_rock_paper_scissors_inner">
                     <div class="left_block_rock_paper_scissors">
                         <h2 class="title_rock_paper_scissors">Камінь - ножиці - папір</h2>
                         <div class="images_rock_paper_scissors">
-                            <ul>
+                            <ul id="rock-paper-scissors-list">
                                 <li>
-                                    <button>
-                                        <svg class="stone">
-                                            <use href="/img/symbol-defs.svg#stone"></use>
-                                        </svg>
+                                    <button id="stone">
+                                        <p>Камінь</p>
+                                        <img class="stone" src="./images/rock.svg" alt="Камінь">
                                     </button>
                                 </li>
                                 <li>
-                                    <button>
-                                        <svg class="scissors">
-                                            <use href="/img/symbol-defs.svg#scissors"></use>
-                                        </svg>
+                                    <button id="scissors">
+                                        <p>Ножиці</p>
+                                        <img class="scissors" src="./images/scissors.svg" alt="Ножиці">
                                     </button>
                                 </li>
                                 <li>
-                                    <button>
-                                        <svg class="paper">
-                                            <use href="/img/symbol-defs.svg#paper"></use>
-                                        </svg>
+                                    <button id="paper">
+                                        <p>Папір</p>
+                                        <img class="paper" src="./images/paper.svg" alt="Папір">
                                     </button>
                                 </li>
                             </ul>
                         </div>
                         <div class="container_answers">
-                            <svg class="my_answer"><use href=""></use></svg>
+                            <img class="my_answer" src="" alt="Ваш вибір">
                             <p class="compare">&</p>
-                            <svg class="comp_answer"><use href=""></use></svg>
+                            <img class="comp_answer" src="" alt="Вибір комп’ютера">
                         </div>
-                        <p class="green_rock_paper_scissors red_rock_paper_scissors" id="text_rock_paper_scissors"></p>
-                        <button class="btn_rock_paper_scissors">Варіант комп’ютера</button>
+                        <p class="round_result_rock_paper_scissors" id="text_rock_paper_scissors"></p>
                     </div>
                 </div>
                 <div class="container_results_rock_paper_scissors">
                     <p class="score_rock_paper_scissors">Рахунок:</p>
                     <p class="computer_score_rock_paper_scissors">
-                        Комп’ютер - <span class="my_score">0</span>
+                        Комп’ютер - <span class="comp_score">0</span>
                     </p>
                     <p class="my_score_rock_paper_scissors">
-                        Ви - <span class="comp_score">0</span>
+                        Ви - <span class="my_score">0</span>
+                    </p>
+                    <p class="draw_score_rock_paper_scissors">
+                        Нічия - <span class="draw_score">0</span>
                     </p>
                     <button class="btn_continue">Наступний раунд</button>
                 </div>
             </div>
         </section>
 
-        <section class="scientists">
+        <section class="scientists" data-game-category="exploratory">
             <h3 class="scientists-title">Обери вченого/их</h3>
 
             <ul class="scientists-list">
@@ -331,10 +335,10 @@
                 <div id="subscribe-modal">
                     <div id="subscribe-modal-window" class="subscribe-modal-window">
                         <p>Дякую за підписку!</p>
-                        <img class="icon top-left" src="/img/footer/sword.svg" alt="">
-                        <img class="icon bottom-left" src="/img/footer/puzzle.svg" alt="">
-                        <img class="icon top-right" src="/img/footer/game-development.svg" alt="">
-                        <img class="icon bottom-right" src="/img/footer/tic-tac-toe.svg" alt="">
+                        <img class="icon top-left" src="./images/sword.svg" alt="">
+                        <img class="icon bottom-left" src="./images/puzzle.svg" alt="">
+                        <img class="icon top-right" src="./images/javascript.svg" alt="">
+                        <img class="icon bottom-right" src="./images/coin.png" alt="">
                     </div>
                 </div>
             </li>
@@ -342,7 +346,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
-    <script src="js/scientists.js"></script>
+    <script src="./js/main.js"></script>
 </body>
 
 </html>
