@@ -1,30 +1,34 @@
-const arrow_btn_left = document.querySelector('.left');
-const arrow_btn_right = document.querySelector('.right');
-const slides = document.querySelectorAll('.slide');
+const arrow_btn_left = document.querySelector('.team-section .left');
+const arrow_btn_right = document.querySelector('.team-section .right');
+const slides = document.querySelectorAll('.team-section .slide');
 let currentSlide = 0;
 
 function changeSlides() {
     slides.forEach(slide => {
-        slide.style.display = 'none';
+        slide.classList.remove('active');
     });
-    slides[currentSlide].style.display = 'flex';
-    slides[currentSlide].style.transform = 'scale(1)';
+
+    slides[currentSlide].classList.add('active');
 }
-changeSlides();
-slides[currentSlide].style.display = 'flex';
 
 arrow_btn_left.addEventListener('click', () => {
-    changeSlides();
     currentSlide--;
+
     if (currentSlide < 0) {
         currentSlide = slides.length - 1;
     }
+
+    changeSlides();
 });
 
 arrow_btn_right.addEventListener('click', () => {
-    changeSlides();
     currentSlide++;
+
     if (currentSlide >= slides.length) {
         currentSlide = 0;
     }
+
+    changeSlides();
 });
+
+changeSlides();
