@@ -156,9 +156,16 @@
                 <input type="number" id="max-num1" placeholder="Введіть число">
                 <input type="number" id="max-num2" placeholder="Введіть число">
                 <input type="number" id="max-num3" placeholder="Введіть число">
+
+
+            </div>
+            <div id="chart-container" hidden> 
+            <canvas id="myChart">
+                
+             </canvas>
             </div>
             <div class="result">
-                Найбільше число, яке ви ввели - <span id="max-number">?</span>
+                Найбільше число, яке ви ввели : <span id="max-number">?</span>
             </div>
         </section>
 
@@ -174,7 +181,7 @@
                             </svg>
                         </button>
                     </div>
-                    <p class="green_number_guess red_number_guess" id="text_number_guess"></p>
+                    <p class="green red" id="text_number_guess"></p>
                 </div>
             </div>
             <div class="container_attempt">
@@ -345,8 +352,11 @@
         </ul>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
     <script src="./js/main.js"></script>
+
 </body>
 
 </html>
