@@ -50,6 +50,11 @@ myChart =
       }]
     },
     options: {
+      plugins: {
+        legend: {
+          display: false
+        }
+      },
       scales: {
         y: {
           beginAtZero: true
@@ -61,5 +66,4 @@ myChart =
     ctx.parentElement.hidden = false;
   }
 }
-
 
