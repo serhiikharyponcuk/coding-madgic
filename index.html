@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coding Magic</title>
+    <link rel="icon" type="image/svg+xml" href="./images/gamepad-favicon.svg">
     <link rel="stylesheet" href="./css/reset.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sacramento&display=swap"
@@ -144,11 +145,13 @@
                     <p>Почніть гру та допоможіть динозавру перестрибувати перешкоди. Для стрибка натискайте пробіл або поле гри.</p>
                 </details>
                 <div class="game-field">
+                    <p class="dino-score">Очки: <span id="dino-score">0</span></p>
                     <img src="./images/dino.png" alt="Dino" class="dino-image">
-                    <img src="./images/cactus.png" alt="Cactus" class="cactus-image1">
-                    <img src="./images/cactus.png" alt="Cactus" class="cactus-image2">
-                    <img src="./images/cactus.png" alt="Cactus" class="cactus-image3">
-                    <div class="message" id="message">Ви програли</div>
+                    <img src="./images/cactus.png" alt="Cactus" class="cactus-image cactus-image1">
+                    <img src="./images/cactus.png" alt="Cactus" class="cactus-image cactus-image2">
+                    <img src="./images/cactus.png" alt="Cactus" class="cactus-image cactus-image3">
+                    <img src="./images/pterodactyl.png" alt="Pterodactyl" class="pterodactyl-image">
+                    <div class="message" id="message">Гра завершена</div>
                 </div>
                 <button class="start-btn" id="startBtn">Почати гру</button>
             </div>
@@ -212,20 +215,31 @@
                     <summary>Як грати?</summary>
                     <p>Введіть число та натисніть кнопку пошуку. Спробуйте відгадати число комп’ютера за три спроби.</p>
                 </details>
+                <p class="number-guess-range">Комп’ютер загадав число від 0 до 10</p>
                 <div class="container_main_number_guess">
                     <div class="input_wraper_number_guess">
-                        <input class="input_number_guess" placeholder="Введіть число" type="text">
+                        <input class="input_number_guess" placeholder="Введіть число" type="number" min="0" max="10" inputmode="numeric">
                         <button class="number_guess_search_btn">
                             <svg class="icon">
                                 <use href="./images/symbol-defs.svg#magnifying-glass"></use>
                             </svg>
                         </button>
                     </div>
-                    <p class="green red" id="text_number_guess"></p>
+                    <p class="green red" id="text_number_guess" aria-live="polite"></p>
                 </div>
             </div>
             <div class="container_attempt">
                 <p class="text_attempt">Спроби: <span class="count_attempts">3</span></p>
+            </div>
+            <div class="number-guess-modal" aria-hidden="true">
+                <div class="number-guess-modal-window">
+                    <p class="number-guess-modal-title"></p>
+                    <p class="number-guess-modal-text"></p>
+                    <div class="number-guess-modal-actions">
+                        <button class="number-guess-modal-new-game" type="button">Зіграти ще раз</button>
+                        <button class="number-guess-modal-close" type="button">Закрити</button>
+                    </div>
+                </div>
             </div>
         </section>
 

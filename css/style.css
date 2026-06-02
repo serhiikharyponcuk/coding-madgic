@@ -443,8 +443,27 @@ input::placeholder {
   overflow: hidden;
 }
 
+.game-field::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 49px;
+  left: 0;
+  height: 1px;
+  background-color: #7e7e7e;
+}
+
 .ground-image {
   display: none;
+}
+
+.dino-score {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  z-index: 3;
+  color: #5f6666;
+  font-size: 11px;
 }
 
 .dino-image {
@@ -455,14 +474,51 @@ input::placeholder {
   z-index: 2;
 }
 
+.dino-image.jump {
+  animation: dinoJump 0.96s ease-out;
+}
+
+@keyframes dinoJump {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  48% {
+    transform: translateY(-95px);
+  }
+}
+.cactus-move {
+  animation: cactusMove linear infinite;
+}
+
+@keyframes cactusMove {
+  0% {
+    right: -40px;
+  }
+  100% {
+    right: 100%;
+  }
+}
+
 .cactus-image1,
 .cactus-image2,
 .cactus-image3 {
   display: none;
   position: absolute;
+  right: -40px;
   bottom: 50px;
   width: 30px;
   height: 42px;
+  z-index: 2;
+}
+
+.pterodactyl-image {
+  display: none;
+  position: absolute;
+  right: -65px;
+  bottom: 96px;
+  width: 58px;
   z-index: 2;
 }
 
@@ -1978,6 +2034,10 @@ header.dark #filter-menu-modal-window button {
     height: 200px;
   }
 
+  .game-field::after {
+    bottom: 29px;
+  }
+
   .dino-image {
     bottom: 30px;
     width: 45px;
@@ -2403,6 +2463,16 @@ header.dark #filter-menu-modal-window button {
 
   .game-field {
     height: 160px;
+  }
+
+  .game-field::after {
+    bottom: 25px;
+  }
+
+  .dino-score {
+    top: 8px;
+    right: 10px;
+    font-size: 10px;
   }
 
   .dino-image {
@@ -3303,5 +3373,282 @@ button:focus-visible,
 
   .rock-paper-scissors-modal-result {
     font-size: 16px;
+  }
+}
+
+/* Number guess */
+.container_number_guess {
+  flex-direction: column;
+  gap: 16px;
+  padding: 32px 18px;
+}
+
+.container_number_guess_inner {
+  width: 100%;
+  gap: 0;
+}
+
+.number-guess-range {
+  margin-bottom: 18px;
+  color: #6b7473;
+  font-size: 11px;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.container_main_number_guess {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.input_wraper_number_guess {
+  flex: 0 0 190px;
+  width: 190px;
+}
+
+.input_wraper_number_guess .input_number_guess {
+  width: 100%;
+}
+
+#text_number_guess {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(100%, 280px);
+  height: 64px;
+  margin: 0;
+  padding: 7px 12px;
+  border-radius: 18px;
+  background-color: #f5f7f7;
+  font-size: 11px;
+  line-height: 1.3;
+  text-align: center;
+}
+
+#text_number_guess:empty::before {
+  color: #7e7e7e;
+  content: 'Тут з’явиться підказка';
+}
+
+.container_attempt {
+  position: static;
+  margin: 0;
+  padding: 7px 14px;
+  border-radius: 16px;
+  background-color: #373737;
+  color: #fff;
+  font-size: 11px;
+}
+
+.count_attempts {
+  color: #8edbd6;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+@media (max-width: 480px) {
+  .container_number_guess {
+    gap: 14px;
+    padding: 24px 12px;
+  }
+
+  .number-guess-range {
+    margin-bottom: 14px;
+    font-size: 10px;
+  }
+
+  .container_main_number_guess {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .input_wraper_number_guess {
+    flex-basis: auto;
+    width: min(100%, 190px);
+  }
+
+  #text_number_guess {
+    width: min(100%, 240px);
+    height: 74px;
+    font-size: 10px;
+  }
+}
+
+/* Number guess result modal */
+.number-guess-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: rgba(37, 37, 37, 0.46);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.number-guess-modal.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.number-guess-modal-window {
+  width: min(100%, 390px);
+  padding: 28px 24px;
+  border: 1px solid rgba(88, 184, 178, 0.38);
+  border-radius: 18px;
+  background-color: #fff;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  transform: translateY(14px) scale(0.96);
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.number-guess-modal.show .number-guess-modal-window {
+  transform: translateY(0) scale(1);
+}
+
+.number-guess-modal.lose .number-guess-modal-window {
+  border-color: rgba(232, 113, 94, 0.55);
+}
+
+.number-guess-modal-title {
+  color: #3e9994;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.number-guess-modal.lose .number-guess-modal-title {
+  color: #c65c4c;
+}
+
+.number-guess-modal-text {
+  margin: 12px 0 20px;
+  color: #5f6666;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.number-guess-modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.number-guess-modal-new-game,
+.number-guess-modal-close {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 18px;
+  color: #fff;
+  font-size: 12px;
+}
+
+.number-guess-modal-new-game {
+  background-color: #000;
+}
+
+.number-guess-modal-close {
+  background-color: #6b7473;
+}
+
+@media (max-width: 480px) {
+  .number-guess-modal-window {
+    padding: 24px 18px;
+    border-radius: 16px;
+  }
+
+  .number-guess-modal-title {
+    font-size: 16px;
+  }
+
+  .number-guess-modal-actions {
+    flex-direction: column;
+  }
+}
+
+/* Rock paper scissors animations */
+.images_rock_paper_scissors button.selected {
+  animation: rockPaperScissorsChoice 0.5s ease;
+}
+
+.images_rock_paper_scissors button.selected img {
+  box-shadow: 0 0 0 4px rgba(88, 184, 178, 0.42);
+}
+
+.my_answer {
+  animation: playerAnswerIn 0.42s ease;
+}
+
+.comp_answer {
+  animation: computerAnswerIn 0.42s ease;
+}
+
+.round_result_rock_paper_scissors.thinking {
+  color: #6b7473;
+  animation: computerThinking 0.85s ease-in-out infinite alternate;
+}
+
+@keyframes rockPaperScissorsChoice {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+
+  45% {
+    transform: translateY(-8px) scale(1.08);
+  }
+
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes playerAnswerIn {
+  from {
+    opacity: 0;
+    transform: translateX(-22px) scale(0.84);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes computerAnswerIn {
+  from {
+    opacity: 0;
+    transform: translateX(22px) scale(0.84);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes computerThinking {
+  from {
+    opacity: 0.48;
+    transform: scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .images_rock_paper_scissors button.selected,
+  .my_answer,
+  .comp_answer,
+  .round_result_rock_paper_scissors.thinking {
+    animation: none;
   }
 }

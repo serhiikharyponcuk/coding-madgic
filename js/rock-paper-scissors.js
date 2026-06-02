@@ -39,13 +39,16 @@ rockPaperScissorsList.addEventListener("click", (event) => {
     const computerAnswer = randomComputerAnswer(Object.keys(rockPaperScissors));
 
     isRoundActive = true;
+    highlightSelectedButton(clickedButton);
     showAnswer(myAnswerImg, userAnswer);
     hideAnswer(compAnswerImg);
     showRoundResult("Комп’ютер думає...", "draw");
+    roundResultText.classList.add("thinking");
 
     computerAnswerTimer = setTimeout(() => {
         const result = getWinner(userAnswer, computerAnswer);
 
+        roundResultText.classList.remove("thinking");
         showAnswer(compAnswerImg, computerAnswer);
         updateScores(result);
         playedRounds += 1;
@@ -138,8 +141,9 @@ function resetRockPaperScissorsRound() {
     isRoundActive = false;
     hideAnswer(myAnswerImg);
     hideAnswer(compAnswerImg);
+    clearSelectedButtons();
     roundResultText.textContent = "";
-    roundResultText.classList.remove("win", "lose", "draw");
+    roundResultText.classList.remove("win", "lose", "draw", "thinking");
 }
 
 function getRoundMessage(result) {
@@ -206,4 +210,17 @@ function startNewRockPaperScissorsGame() {
     resultModal.classList.remove("show");
     resultModal.setAttribute("aria-hidden", "true");
     resetRockPaperScissorsRound();
+}
+
+function highlightSelectedButton(selectedButton) {
+    clearSelectedButtons();
+    selectedButton.classList.add("selected");
+}
+
+function clearSelectedButtons() {
+    const choiceButtons = rockPaperScissorsList.querySelectorAll("button");
+
+    choiceButtons.forEach((button) => {
+        button.classList.remove("selected");
+    });
 }
