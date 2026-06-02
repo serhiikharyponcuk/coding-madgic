@@ -5,13 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coding Magic</title>
-    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/reset.css" />
-    <link rel="stylesheet" href="./css/normalize.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sacramento&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
@@ -64,7 +63,11 @@
         </section>
 
         <section class="container_birthday" data-game-category="numeric">
-            <p class="title_birthday">Перевір в який рік ти народився</p>
+            <p class="title_birthday section-title">Перевір в який рік ти народився</p>
+            <details class="game-guide">
+                <summary>Як грати?</summary>
+                <p>Введіть рік народження та натисніть кнопку пошуку. Ви дізнаєтесь, чи був цей рік високосним.</p>
+            </details>
             <div class="container_birthday_inner">
                 <div class="input_wraper">
                     <input class="input_birthday" placeholder="Введіть рік народження" type="text">
@@ -80,7 +83,11 @@
 
         <section data-game-category="numeric">
             <div class="container">
-                <h1>Калькулятор</h1>
+                <h1 class="section-title">Калькулятор</h1>
+                <details class="game-guide">
+                    <summary>Як користуватись?</summary>
+                    <p>Введіть два числа, оберіть математичну дію та натисніть знак дорівнює. Результат з’явиться у правому полі.</p>
+                </details>
 
                 <div class="inputs-row">
                     <div class="input-wrapper shadow-input">
@@ -109,15 +116,19 @@
 
         <section class="timecalc-section" data-game-category="numeric">
             <div class="timecalc-centered">
-                <h1>Калькулятор часу</h1>
+                <h1 class="section-title">Калькулятор часу</h1>
+                <details class="game-guide">
+                    <summary>Як користуватись?</summary>
+                    <p>Введіть кількість хвилин і натисніть кнопку пошуку. Калькулятор переведе значення у дні, години та хвилини.</p>
+                </details>
                 <div class="timecalc-input-result-row">
                     <div class="timecalc-search-wrapper">
                         <input type="text" id="timecalc-minutesInput" placeholder="Введіть число">
-                        <div class="timecalc-search-button" id="timecalc-button">
+                        <button class="timecalc-search-button" id="timecalc-button" type="button">
                             <svg class="icon">
                                 <use href="./images/symbol-defs.svg#magnifying-glass"></use>
                             </svg>
-                        </div>
+                        </button>
                     </div>
                     <div class="timecalc-dashed-line"></div>
                     <div id="timecalc-result">3 дн. 15:45:01</div>
@@ -127,7 +138,11 @@
 
         <section data-game-category="game">
             <div class="dino-container">
-                <h1 class="h1">Google динозавр</h1>
+                <h1 class="h1 section-title">Google динозавр</h1>
+                <details class="game-guide">
+                    <summary>Як грати?</summary>
+                    <p>Почніть гру та допоможіть динозавру перестрибувати перешкоди. Для стрибка натискайте пробіл або поле гри.</p>
+                </details>
                 <div class="game-field">
                     <img src="./images/dino.png" alt="Dino" class="dino-image">
                     <img src="./images/cactus.png" alt="Cactus" class="cactus-image1">
@@ -140,18 +155,39 @@
         </section>
 
         <section class="football" data-game-category="game">
-            <h2 class="title">Футбол</h2>
+            <h2 class="title section-title">Футбол</h2>
+            <details class="game-guide">
+                <summary>Як грати?</summary>
+                <p>Натисніть «Грати», наведіть курсор у потрібний бік і затисніть мишку. Відпустіть її, коли стрілка стане достатньо довгою, щоб м’яч долетів до воріт.</p>
+            </details>
             <div class="field">
+                <label class="football-difficulty">
+                    <span>Складність</span>
+                    <select id="football-difficulty">
+                        <option value="easy">Легка</option>
+                        <option value="medium" selected>Середня</option>
+                        <option value="hard">Складна</option>
+                    </select>
+                </label>
                 <div class="mid-line"></div>
                 <div class="center-circle"></div>
-                <div class="ball" id="ball"><i class="fa-solid fa-arrow-right-long arrow-big arrow-move"></i></div>
+                <div class="ball" id="ball">
+                    <div class="arrow-big arrow-move"></div>
+                </div>
                 <div class="gate"></div>
+                <div class="football-overlay">
+                    <button class="football-play-btn" type="button">Грати</button>
+                </div>
             </div>
             <div class="score-board">Голів забито: <span id="score">0</span></div>
         </section>
 
         <section class="max-number" data-game-category="numeric">
-            <h2 class="title">Введіть 3 числа</h2>
+            <h2 class="title section-title">Введіть 3 числа</h2>
+            <details class="game-guide">
+                <summary>Як користуватись?</summary>
+                <p>Введіть три числа. Сторінка визначить найбільше значення та покаже введені числа на графіку.</p>
+            </details>
             <div class="inputs">
                 <input type="number" id="max-num1" placeholder="Введіть число">
                 <input type="number" id="max-num2" placeholder="Введіть число">
@@ -171,7 +207,11 @@
 
         <section class="container_number_guess" data-game-category="game">
             <div class="container_number_guess_inner">
-                <p class="title_number_guess">Вгадай число, яке загадав комп’ютер</p>
+                <p class="title_number_guess section-title">Вгадай число, яке загадав комп’ютер</p>
+                <details class="game-guide">
+                    <summary>Як грати?</summary>
+                    <p>Введіть число та натисніть кнопку пошуку. Спробуйте відгадати число комп’ютера за три спроби.</p>
+                </details>
                 <div class="container_main_number_guess">
                     <div class="input_wraper_number_guess">
                         <input class="input_number_guess" placeholder="Введіть число" type="text">
@@ -190,7 +230,7 @@
         </section>
 
         <section class="team-section" data-game-category="exploratory">
-            <h2 class="team-title">Наша команда</h2>
+            <h2 class="team-title section-title">Наша команда</h2>
 
             <div class="slider">
                 <button class="arrow left" type="button" aria-label="Попередній учасник">
@@ -224,7 +264,11 @@
             <div class="container_rock_paper_scissors">
                 <div class="container_rock_paper_scissors_inner">
                     <div class="left_block_rock_paper_scissors">
-                        <h2 class="title_rock_paper_scissors">Камінь - ножиці - папір</h2>
+                        <h2 class="title_rock_paper_scissors section-title">Камінь - ножиці - папір</h2>
+                        <details class="game-guide">
+                            <summary>Як грати?</summary>
+                            <p>Оберіть камінь, ножиці або папір. Через секунду з’явиться вибір комп’ютера. Після п’яти раундів гра покаже переможця.</p>
+                        </details>
                         <div class="images_rock_paper_scissors">
                             <ul id="rock-paper-scissors-list">
                                 <li>
@@ -269,10 +313,21 @@
                     <button class="btn_continue">Наступний раунд</button>
                 </div>
             </div>
+            <div class="rock-paper-scissors-modal" aria-hidden="true">
+                <div class="rock-paper-scissors-modal-window">
+                    <p class="rock-paper-scissors-modal-title">Гру завершено</p>
+                    <p class="rock-paper-scissors-modal-result"></p>
+                    <button class="rock-paper-scissors-modal-btn" type="button">Нова гра</button>
+                </div>
+            </div>
         </section>
 
         <section class="scientists" data-game-category="exploratory">
-            <h3 class="scientists-title">Обери вченого/их</h3>
+            <h3 class="scientists-title section-title">Обери вченого/их</h3>
+            <details class="game-guide">
+                <summary>Що треба робити?</summary>
+                <p>Натискайте кнопки із завданнями, щоб фільтрувати або сортувати картки вчених і знаходити правильні відповіді.</p>
+            </details>
 
             <ul class="scientists-list">
                 <li class="scientists-item"></li>
@@ -323,7 +378,12 @@
 
     <footer>
         <ul id="nav">
-            <li><button type="button" id="footer-main-btn"></button></li>
+            <li class="footer-logo-item">
+                <button type="button" id="footer-main-btn" aria-label="Coding Magic">
+                    <span class="footer-logo-title">Coding</span>
+                    <span class="footer-logo-subtitle">Magic</span>
+                </button>
+            </li>
             <li>
                 <ul class="footer-contacts">
                     <li>Тел: +38 (123) 456 78 9</li>

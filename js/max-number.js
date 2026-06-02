@@ -35,29 +35,56 @@ myChart =
       datasets: [{
         label: 'Графік введених чисел',
         data: [num1, num2, num3],
-        borderWidth: 1,
-          backgroundColor: [
-      'rgba(255, 99, 132, 0.6)',
-      'rgba(255, 159, 64, 0.6)',
-      'rgba(54, 162, 235 , 0.6)',
-    ],
-    borderColor: [
-      'rgb(75, 192, 192)',
-      'rgb(255, 99, 132)',
-      'rgb(255, 205, 86)',
-    ],
-    borderWidth: 5
+        backgroundColor: [
+          'rgba(88, 184, 178, 0.72)',
+          'rgba(255, 143, 122, 0.72)',
+          'rgba(255, 199, 95, 0.78)',
+        ],
+        borderColor: [
+          'rgb(62, 153, 148)',
+          'rgb(232, 113, 94)',
+          'rgb(226, 165, 54)',
+        ],
+        borderWidth: 3,
+        borderRadius: 14,
+        borderSkipped: false,
+        barPercentage: 0.72,
+        categoryPercentage: 0.72
       }]
     },
     options: {
+      responsive: true,
+      maintainAspectRatio: false,
       plugins: {
         legend: {
           display: false
+        },
+        tooltip: {
+          backgroundColor: 'rgba(55, 55, 55, 0.94)',
+          titleColor: '#ffffff',
+          bodyColor: '#ffffff',
+          displayColors: false,
+          cornerRadius: 10,
+          padding: 10
         }
       },
       scales: {
+        x: {
+          grid: {
+            display: false
+          },
+          ticks: {
+            color: '#5f6666'
+          }
+        },
         y: {
-          beginAtZero: true
+          beginAtZero: true,
+          grid: {
+            color: 'rgba(55, 55, 55, 0.1)'
+          },
+          ticks: {
+            color: '#5f6666'
+          }
         }
       }
     }
@@ -66,4 +93,3 @@ myChart =
     ctx.parentElement.hidden = false;
   }
 }
-

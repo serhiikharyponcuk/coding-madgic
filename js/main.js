@@ -1,5 +1,6 @@
 const scripts = [
     "./js/header.js",
+    "./js/guide.js",
     "./js/birthday.js",
     "./js/calculator.js",
     "./js/time-calculator.js",

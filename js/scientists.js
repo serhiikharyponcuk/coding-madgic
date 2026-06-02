@@ -95,6 +95,7 @@ const youngestScientistBtn = document.querySelector("#younger");
 const longestAndShortestLifeBtn = document.querySelector("#older");
 const sameFirstLettersBtn = document.querySelector("#a-a");
 const scientistsList = document.querySelector(".scientists-list");
+const scientistCards = scientistsList.querySelectorAll(".scientists-item");
 
 bornIn19CenturyBtn.addEventListener("click", () => {
     const scientistsFilterBorn = scientists.filter(({ born }) => born >= 1800 && born <= 1900);
@@ -170,16 +171,22 @@ sameFirstLettersBtn.addEventListener("click", () => {
 });
 
 function scientistsRender(scientistsToRender) {
-    scientistsList.innerHTML = "";
+    scientistCards.forEach((scientistCard, index) => {
+        const scientist = scientistsToRender[index];
 
-    const markup = scientistsToRender.map(scientist => {
-        return `<li id="${scientist.id}" class="scientists-item">
+        scientistCard.innerHTML = "";
+        scientistCard.classList.add("scientists-item-empty");
+
+        if (!scientist) {
+            return;
+        }
+
+        scientistCard.classList.remove("scientists-item-empty");
+        scientistCard.innerHTML = `
             <p class="scientists-ful-name">${scientist.name} ${scientist.surname}</p>
             <p class="scientists-live">${scientist.born}-${scientist.dead}</p>
-        </li>`;
-    }).join("");
-
-    scientistsList.insertAdjacentHTML("beforeend", markup);
+        `;
+    });
 }
 
 scientistsRender(scientists);

@@ -6,6 +6,9 @@ const myAnswerImg = document.querySelector(".my_answer");
 const compAnswerImg = document.querySelector(".comp_answer");
 const roundResultText = document.querySelector("#text_rock_paper_scissors");
 const continueBtn = document.querySelector(".btn_continue");
+const resultModal = document.querySelector(".rock-paper-scissors-modal");
+const resultModalText = document.querySelector(".rock-paper-scissors-modal-result");
+const newGameModalBtn = document.querySelector(".rock-paper-scissors-modal-btn");
 
 const rockPaperScissors = {
     stone: {
@@ -56,6 +59,12 @@ rockPaperScissorsList.addEventListener("click", (event) => {
 });
 
 continueBtn.addEventListener("click", resetRockPaperScissorsRound);
+newGameModalBtn.addEventListener("click", startNewRockPaperScissorsGame);
+resultModal.addEventListener("click", (event) => {
+    if (event.target === resultModal) {
+        startNewRockPaperScissorsGame();
+    }
+});
 
 function getWinner(userAnswer, computerAnswer) {
     if (userAnswer === computerAnswer) {
@@ -160,4 +169,41 @@ function finishRockPaperScissorsGame() {
     isGameFinished = true;
     isRoundActive = true;
     continueBtn.textContent = "Нова гра";
+    showRockPaperScissorsModal();
+
+    if (didUserWinRockPaperScissorsGame()) {
+        showRockPaperScissorsConfetti();
+    }
+}
+
+function didUserWinRockPaperScissorsGame() {
+    const userPoints = parseInt(myScore.textContent);
+    const computerPoints = parseInt(compScore.textContent);
+
+    return userPoints > computerPoints;
+}
+
+function showRockPaperScissorsConfetti() {
+    if (typeof confetti !== "function") return;
+
+    confetti({
+        particleCount: 120,
+        spread: 90,
+        origin: {
+            x: 0.5,
+            y: 0.62
+        }
+    });
+}
+
+function showRockPaperScissorsModal() {
+    resultModalText.textContent = getFinalGameMessage();
+    resultModal.classList.add("show");
+    resultModal.setAttribute("aria-hidden", "false");
+}
+
+function startNewRockPaperScissorsGame() {
+    resultModal.classList.remove("show");
+    resultModal.setAttribute("aria-hidden", "true");
+    resetRockPaperScissorsRound();
 }
