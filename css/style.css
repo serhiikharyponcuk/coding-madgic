@@ -435,6 +435,7 @@ input::placeholder {
   max-width: 800px;
   margin: 0 auto;
   text-align: left;
+  --dino-sprite: url('https://raw.githubusercontent.com/chromium/chromium/main/components/neterror/resources/images/default_100_percent/offline/100-offline-sprite.png');
 }
 
 .game-field {
@@ -443,39 +444,94 @@ input::placeholder {
   overflow: hidden;
 }
 
-.game-field::after {
+.game-field::before {
   content: '';
   position: absolute;
-  right: 0;
-  bottom: 49px;
+  top: 46px;
+  left: var(--dino-cloud-left, 70%);
+  width: 46px;
+  height: 14px;
+  background-image: var(--dino-sprite);
+  background-position: -86px -2px;
+  background-repeat: no-repeat;
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.game-field::after {
+  display: none;
+}
+
+.dino-horizon {
+  position: absolute;
+  bottom: 44px;
+  left: 50%;
+  z-index: 1;
+  width: min(100%, 600px);
+  height: 12px;
+  overflow: hidden;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.dino-horizon-piece {
+  position: absolute;
+  top: 0;
+  width: 600px;
+  height: 12px;
+  background-image: var(--dino-sprite);
+  background-position: -2px -54px;
+  background-repeat: no-repeat;
+}
+
+.dino-horizon-piece:first-child {
   left: 0;
-  height: 1px;
-  background-color: #7e7e7e;
+}
+
+.dino-horizon-piece:last-child {
+  left: 600px;
 }
 
 .ground-image {
   display: none;
 }
 
-.dino-score {
+.dino-score,
+.dino-record {
   position: absolute;
-  top: 12px;
   right: 14px;
-  z-index: 3;
+  z-index: 4;
   color: #5f6666;
   font-size: 11px;
+}
+
+.dino-score {
+  top: 12px;
+}
+
+.dino-record {
+  top: 30px;
 }
 
 .dino-image {
   position: absolute;
   bottom: 50px;
   left: 17%;
-  width: 55px;
-  z-index: 2;
+  width: 44px;
+  height: 47px;
+  background-image: var(--dino-sprite);
+  background-position: -848px -2px;
+  background-repeat: no-repeat;
+  z-index: 3;
 }
 
 .dino-image.jump {
   animation: dinoJump 0.96s ease-out;
+}
+
+.dino-image:not(.jump) {
+  animation: dinoRun 0.24s steps(1) infinite;
 }
 
 @keyframes dinoJump {
@@ -488,53 +544,68 @@ input::placeholder {
     transform: translateY(-95px);
   }
 }
-.cactus-move {
-  animation: cactusMove linear infinite;
-}
 
-@keyframes cactusMove {
+@keyframes dinoRun {
   0% {
-    right: -40px;
+    background-position: -936px -2px;
   }
-  100% {
-    right: 100%;
+
+  50% {
+    background-position: -980px -2px;
   }
 }
-
 .cactus-image1,
 .cactus-image2,
 .cactus-image3 {
   display: none;
   position: absolute;
-  right: -40px;
+  right: -100px;
   bottom: 50px;
-  width: 30px;
-  height: 42px;
-  z-index: 2;
+  width: 17px;
+  height: 35px;
+  background-image: var(--dino-sprite);
+  background-position: -228px -2px;
+  background-repeat: no-repeat;
+  z-index: 3;
 }
 
 .pterodactyl-image {
   display: none;
   position: absolute;
-  right: -65px;
-  bottom: 96px;
-  width: 58px;
-  z-index: 2;
+  right: -120px;
+  bottom: 50px;
+  width: 46px;
+  height: 40px;
+  background-image: var(--dino-sprite);
+  background-position: -134px -2px;
+  background-repeat: no-repeat;
+  z-index: 3;
+  animation: pterodactylFly 0.45s ease-in-out infinite alternate;
 }
 
-.message {
-  display: none;
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 14px;
-  color: #cc0000;
-  font-weight: 500;
-  padding: 10px 20px;
-  border: 1px solid #cc0000;
-  border-radius: 5px;
-  z-index: 999;
+@keyframes pterodactylFly {
+  from {
+    transform: translateY(-4px);
+  }
+
+  to {
+    transform: translateY(4px);
+  }
+}
+
+.pterodactyl-image[style*='block'] {
+  animation: pterodactylFly 0.45s ease-in-out infinite alternate,
+    pterodactylWings 0.35s steps(1) infinite;
+}
+
+@keyframes pterodactylWings {
+  0% {
+    background-position: -134px -2px;
+  }
+
+  50% {
+    background-position: -180px -2px;
+  }
 }
 
 .start-btn {
@@ -547,6 +618,85 @@ input::placeholder {
   border: none;
   background-color: #000;
   color: #fff;
+}
+
+.dino-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 35;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: rgba(37, 37, 37, 0.46);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.dino-modal.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.dino-modal-window {
+  width: min(100%, 390px);
+  padding: 28px 24px;
+  border: 1px solid rgba(88, 184, 178, 0.38);
+  border-radius: 18px;
+  background-color: #fff;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  transform: translateY(14px) scale(0.96);
+  transition: transform 0.3s ease;
+}
+
+.dino-modal.show .dino-modal-window {
+  transform: translateY(0) scale(1);
+}
+
+.dino-modal-title {
+  color: #373737;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.dino-modal-score {
+  margin-top: 12px;
+  color: #5f6666;
+  font-size: 13px;
+}
+
+.dino-modal-record {
+  margin: 10px 0 20px;
+  color: #3e9994;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.dino-modal-btn {
+  padding: 10px 22px;
+  border: none;
+  border-radius: 18px;
+  background-color: #000;
+  color: #fff;
+  font-size: 12px;
+}
+
+@media (max-width: 480px) {
+  .dino-modal-window {
+    padding: 24px 18px;
+    border-radius: 16px;
+  }
+
+  .dino-modal-title {
+    font-size: 16px;
+  }
+
+  .dino-modal-record {
+    font-size: 13px;
+  }
 }
 
 .football {
@@ -2038,9 +2188,19 @@ header.dark #filter-menu-modal-window button {
     bottom: 29px;
   }
 
+  .dino-horizon {
+    bottom: 24px;
+  }
+
+  .game-field::before {
+    top: 38px;
+    left: 64%;
+  }
+
   .dino-image {
     bottom: 30px;
-    width: 45px;
+    width: 44px;
+    height: 47px;
     left: 16%;
   }
 
@@ -2048,13 +2208,14 @@ header.dark #filter-menu-modal-window button {
   .cactus-image2,
   .cactus-image3 {
     bottom: 30px;
-    width: 25px;
-    height: 38px;
+    width: 17px;
+    height: 35px;
   }
 
-  .message {
-    font-size: 12px;
-    padding: 8px 16px;
+  .pterodactyl-image {
+    bottom: 30px;
+    width: 46px;
+    height: 40px;
   }
 
   .start-btn {
@@ -2469,6 +2630,15 @@ header.dark #filter-menu-modal-window button {
     bottom: 25px;
   }
 
+  .dino-horizon {
+    bottom: 20px;
+  }
+
+  .game-field::before {
+    top: 34px;
+    left: 56%;
+  }
+
   .dino-score {
     top: 8px;
     right: 10px;
@@ -2477,7 +2647,8 @@ header.dark #filter-menu-modal-window button {
 
   .dino-image {
     bottom: 26px;
-    width: 37px;
+    width: 44px;
+    height: 47px;
     left: 15%;
   }
 
@@ -2485,13 +2656,14 @@ header.dark #filter-menu-modal-window button {
   .cactus-image2,
   .cactus-image3 {
     bottom: 26px;
-    width: 20px;
-    height: 30px;
+    width: 17px;
+    height: 35px;
   }
 
-  .message {
-    font-size: 11px;
-    padding: 6px 12px;
+  .pterodactyl-image {
+    bottom: 26px;
+    width: 46px;
+    height: 40px;
   }
 
   .start-btn {

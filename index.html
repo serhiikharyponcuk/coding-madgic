@@ -146,14 +146,26 @@
                 </details>
                 <div class="game-field">
                     <p class="dino-score">Очки: <span id="dino-score">0</span></p>
-                    <img src="./images/dino.png" alt="Dino" class="dino-image">
-                    <img src="./images/cactus.png" alt="Cactus" class="cactus-image cactus-image1">
-                    <img src="./images/cactus.png" alt="Cactus" class="cactus-image cactus-image2">
-                    <img src="./images/cactus.png" alt="Cactus" class="cactus-image cactus-image3">
-                    <img src="./images/pterodactyl.png" alt="Pterodactyl" class="pterodactyl-image">
-                    <div class="message" id="message">Гра завершена</div>
+                    <p class="dino-record">Рекорд: <span id="dino-record">0</span></p>
+                    <div class="dino-horizon" aria-hidden="true">
+                        <span class="dino-horizon-piece"></span>
+                        <span class="dino-horizon-piece"></span>
+                    </div>
+                    <div class="dino-image" role="img" aria-label="Dino"></div>
+                    <div class="cactus-image cactus-image1" role="img" aria-label="Cactus"></div>
+                    <div class="cactus-image cactus-image2" role="img" aria-label="Cactus"></div>
+                    <div class="cactus-image cactus-image3" role="img" aria-label="Cactus"></div>
+                    <div class="pterodactyl-image" role="img" aria-label="Pterodactyl"></div>
                 </div>
                 <button class="start-btn" id="startBtn">Почати гру</button>
+                <div class="dino-modal" aria-hidden="true">
+                    <div class="dino-modal-window">
+                        <p class="dino-modal-title">Гра закінчилась</p>
+                        <p class="dino-modal-score"></p>
+                        <p class="dino-modal-record"></p>
+                        <button class="dino-modal-btn" type="button">Зіграти ще раз</button>
+                    </div>
+                </div>
             </div>
         </section>
 
