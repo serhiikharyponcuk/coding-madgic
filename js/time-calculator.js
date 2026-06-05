@@ -12,6 +12,18 @@ timecalcMinutesInput.addEventListener("keydown", (event) => {
 
 // Запускає калькулятор часу після кліку або натискання Enter.
 function calculateTime() {
+  const minutes = parseInt(timecalcMinutesInput.value);
+  if (isNaN(minutes) || minutes < 0) {
+    timecalcResult.textContent = "Будь ласка, введіть правильне число хвилин.";
+    return;
+  }
+  
+  const days = Math.floor(minutes / (24 * 60));
+  const hours = Math.floor((minutes % (24 * 60)) / 60);
+  const remainingMinutes = minutes % 60;
+  console.log(minutes, days, hours, remainingMinutes);
+  timecalcResult.textContent = `${minutes} хвилин це ${days} днів, ${hours} годин і ${remainingMinutes} хвилин.`;
+
   /*
     ПЛАН РОБОТИ
 
@@ -26,3 +38,4 @@ function calculateTime() {
     6. Якщо значення неправильне, показати підказку замість результату.
   */
 }
+console.log("Калькулятор часу завантажено.");

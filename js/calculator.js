@@ -22,6 +22,10 @@ calculatorSecondInput.addEventListener("keydown", (event) => {
 
 // Запам'ятовує, яку дію вибрав користувач: +, -, * або /.
 function chooseCalculatorOperation(operation) {
+  if (operation === selectedCalculatorOperation) {
+    return; // Якщо користувач вибрав ту ж дію, нічого не робимо.
+  }
+  selectedCalculatorOperation = operation;
   /*
     ПЛАН РОБОТИ
 
@@ -33,6 +37,37 @@ function chooseCalculatorOperation(operation) {
 
 // Виконує обрану математичну дію над двома числами.
 function calculateNumbers() {
+  const num1 = parseFloat(calculatorFirstInput.value.trim());
+  const num2 = parseFloat(calculatorSecondInput.value.trim());
+  if (isNaN(num1) || isNaN(num2)) {
+    return;
+  }
+  if (!selectedCalculatorOperation) {
+    return;
+  }
+  let result;
+  switch (selectedCalculatorOperation) {
+    case "+":
+      result = num1 + num2;
+      break;
+    case "-":
+      result = num1 - num2;
+      break;
+    case "*":
+      result = num1 * num2;
+      break;
+    case "/":
+      if (num2 === 0) {
+        calculatorResultInput.value = "Помилка: ділення на нуль";
+        return;
+      }
+      result = num1 / num2;
+      break;
+    default:
+      return;
+  }
+  calculatorResultInput.value = result;
+  
   /*
     ПЛАН РОБОТИ
 

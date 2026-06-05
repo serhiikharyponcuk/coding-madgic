@@ -22,16 +22,22 @@
                 <li id="interacts">
                     <button class="interact-filter" id="interact-filter">Інтерактив</button>
                     <div id="games-filter" class="hidden">
-                        <button id="game-int">Числовий</button>
-                        <button id="game-game">Ігровий</button>
-                        <button id="game-exploratory">Ознайомчий</button>
+                        <button id="game-int" type="button">Числовий</button>
+                        <button id="game-game" type="button">Ігровий</button>
+                        <button id="game-exploratory" type="button">Ознайомчий</button>
                     </div>
                 </li>
                 <li><button class="our-team">Наша команда</button></li>
                 <li><button class="contacts">Контакти</button></li>
-                <li><input class="theme-btn" id="theme-btn" type="checkbox"></li>
+                <li class="desktop-theme-item"><input class="theme-btn" id="theme-btn" type="checkbox" aria-label="Перемкнути тему"></li>
                 <li><p id="user-hello" class="user-hello">Вітаємо, User!</p></li>
-                <li><button class="filter-menu" id="filter-menu"></button></li>
+                <li>
+                    <button class="filter-menu" id="filter-menu" type="button" aria-label="Відкрити меню" aria-expanded="false">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </li>
             </ul>
         </nav>
 
@@ -51,9 +57,16 @@
 
         <div id="filter-menu-modal">
             <div id="filter-menu-modal-window">
-                <button id="game-int-mobile">Числовий</button>
-                <button id="game-game-mobile">Ігровий</button>
-                <button id="game-exploratory-mobile">Ознайомчий</button>
+                <button id="show-all-mobile" type="button">Усі секції</button>
+                <button id="game-int-mobile" type="button">Числовий</button>
+                <button id="game-game-mobile" type="button">Ігровий</button>
+                <button id="game-exploratory-mobile" type="button">Ознайомчий</button>
+                <button id="team-mobile" type="button">Наша команда</button>
+                <button id="contacts-mobile" type="button">Контакти</button>
+                <label class="burger-theme-control">
+                    <span>Темна тема</span>
+                    <input class="theme-btn" id="theme-btn-mobile" type="checkbox" aria-label="Перемкнути тему">
+                </label>
             </div>
         </div>
     </header>
