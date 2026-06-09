@@ -10,29 +10,60 @@ birthdayInput.addEventListener("keydown", (event) => {
   }
 });
 
-// Запускає перевірку року народження після кліку або натискання Enter.
+// Перевіряє рік після кліку або натискання Enter.
 function checkBirthdayYear() {
-  /*
-    ПЛАН РОБОТИ
+  const yearValue = birthdayInput.value.trim();
+  const year = Number(yearValue);
+  const currentYear = new Date().getFullYear();
 
-    1. Взяти значення з birthdayInput.
-    2. Перетворити його на число.
-    3. Перевірити, що користувач ввів реальний рік.
-    4. Викликати функцію isLeapYear.
-    5. Якщо рік високосний, показати зелене повідомлення.
-    6. Якщо рік не високосний, показати червоне повідомлення.
-    7. Якщо введення неправильне, показати підказку.
-  */
+  if (yearValue === "") {
+    showBirthdayMessage("Введіть рік народження", "error");
+    return;
+  }
+
+  if (!Number.isInteger(year)) {
+    showBirthdayMessage("Рік має бути цілим числом", "error");
+    return;
+  }
+
+  if (year < 1) {
+    showBirthdayMessage("Введіть реальний рік", "error");
+    return;
+  }
+
+  if (year > currentYear) {
+    showBirthdayMessage("Цей рік ще не настав", "error");
+    return;
+  }
+
+  if (isLeapYear(year)) {
+    showBirthdayMessage("Ви народилися у високосний рік!", "success");
+    return;
+  }
+
+  showBirthdayMessage("Ваш рік народження не високосний", "neutral");
 }
 
 // Перевіряє, чи є рік високосним.
 function isLeapYear(year) {
-  /*
-    ПЛАН РОБОТИ
+  if (year % 400 === 0) {
+    return true;
+  }
 
-    1. Якщо рік ділиться на 400, це високосний рік.
-    2. Якщо рік ділиться на 100, це не високосний рік.
-    3. Якщо рік ділиться на 4, це високосний рік.
-    4. В інших випадках рік не високосний.
-  */
+  if (year % 100 === 0) {
+    return false;
+  }
+
+  return year % 4 === 0;
+}
+
+// Показує повідомлення і запускає маленьку анімацію.
+function showBirthdayMessage(message, status) {
+  birthdayText.textContent = message;
+  birthdayText.classList.remove("birthday-success", "birthday-error", "birthday-neutral", "birthday-show");
+  birthdayText.classList.add(`birthday-${status}`);
+
+  requestAnimationFrame(() => {
+    birthdayText.classList.add("birthday-show");
+  });
 }

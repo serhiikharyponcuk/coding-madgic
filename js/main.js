@@ -1,5 +1,6 @@
 const scripts = [
     "./js/header.js",
+    "./js/subscribe.js",
     "./js/guide.js",
     "./js/birthday.js",
     "./js/calculator.js",
@@ -10,7 +11,8 @@ const scripts = [
     "./js/number-guess.js",
     "./js/team-slider.js",
     "./js/scientists.js",
-    "./js/rock-paper-scissors.js"
+    "./js/rock-paper-scissors.js",
+    "./js/language.js"
 ];
 
 loadScripts(scripts);

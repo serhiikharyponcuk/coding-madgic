@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -25,12 +25,24 @@
                         <button id="game-int" type="button">Числовий</button>
                         <button id="game-game" type="button">Ігровий</button>
                         <button id="game-exploratory" type="button">Ознайомчий</button>
+                        <button id="show-all" type="button">Скинути фільтр</button>
                     </div>
                 </li>
                 <li><button class="our-team">Наша команда</button></li>
                 <li><button class="contacts">Контакти</button></li>
+                <li class="desktop-language-item">
+                    <div class="language-switcher" aria-label="Language">
+                        <button class="language-btn" type="button" data-lang="en">EN</button>
+                        <button class="language-btn" type="button" data-lang="nl">NL</button>
+                        <button class="language-btn" type="button" data-lang="uk">UA</button>
+                    </div>
+                </li>
                 <li class="desktop-theme-item"><input class="theme-btn" id="theme-btn" type="checkbox" aria-label="Перемкнути тему"></li>
-                <li><p id="user-hello" class="user-hello">Вітаємо, User!</p></li>
+                <li>
+                    <button id="subscribe-header-btn" class="user-hello subscribe-header-btn" type="button">
+                        Підписатися
+                    </button>
+                </li>
                 <li>
                     <button class="filter-menu" id="filter-menu" type="button" aria-label="Відкрити меню" aria-expanded="false">
                         <span></span>
@@ -41,8 +53,9 @@
             </ul>
         </nav>
 
-        <!-- <form id="welcome-modal" class="welcome-modal">
+        <form id="welcome-modal" class="welcome-modal">
             <div id="welcome-modal-window" class="welcome-modal-window">
+                <button class="welcome-modal-close" type="button" aria-label="Закрити"></button>
                 <p>
                     Привіт!<br>
                     Ви потрапили на сайт інтерактивних ігор та завдань<br>
@@ -50,19 +63,36 @@
                     Бажаємо Вам гарно провести час!
                 </p>
                 <p>Введіть своє ім’я:</p>
-                <input type="text" id="name-input">
+                <input type="text" id="name-input" placeholder="Ваше ім’я...">
                 <button id="welcome-modal-submit" type="submit">Зберегти</button>
+                <img class="modal-icon top-left" src="./images/sword.svg" alt="">
+                <img class="modal-icon bottom-left" src="./images/puzzle.svg" alt="">
+                <img class="modal-icon top-right" src="./images/game-development 1.png" alt="">
+                <img class="modal-icon bottom-right" src="./images/coin.png" alt="">
             </div>
-        </form> -->
+        </form>
+
+        <div class="subscribe-side-hint" aria-live="polite">
+            <p>Підпишіться, щоб не пропустити новинки сайту</p>
+            <button class="subscribe-side-hint-btn" type="button">Підписатися</button>
+        </div>
 
         <div id="filter-menu-modal">
             <div id="filter-menu-modal-window">
-                <button id="show-all-mobile" type="button">Усі секції</button>
+                <button id="show-all-mobile" type="button">Скинути фільтр</button>
                 <button id="game-int-mobile" type="button">Числовий</button>
                 <button id="game-game-mobile" type="button">Ігровий</button>
                 <button id="game-exploratory-mobile" type="button">Ознайомчий</button>
                 <button id="team-mobile" type="button">Наша команда</button>
                 <button id="contacts-mobile" type="button">Контакти</button>
+                <div class="burger-language-control" aria-label="Language">
+                    <span>Мова</span>
+                    <div class="language-switcher">
+                        <button class="language-btn" type="button" data-lang="en">EN</button>
+                        <button class="language-btn" type="button" data-lang="nl">NL</button>
+                        <button class="language-btn" type="button" data-lang="uk">UA</button>
+                    </div>
+                </div>
                 <label class="burger-theme-control">
                     <span>Темна тема</span>
                     <input class="theme-btn" id="theme-btn-mobile" type="checkbox" aria-label="Перемкнути тему">
@@ -84,19 +114,19 @@
             </details>
             <div class="container_birthday_inner">
                 <div class="input_wraper">
-                    <input class="input_birthday" placeholder="Введіть рік народження" type="text">
-                    <button class="birthday_search_btn">
+                    <input class="input_birthday" placeholder="Введіть рік народження" type="text" inputmode="numeric">
+                    <button class="birthday_search_btn" type="button">
                         <svg class="icon">
                             <use href="./images/symbol-defs.svg#magnifying-glass"></use>
                         </svg>
                     </button>
                 </div>
-                <p class="green red" id="text_birthday"></p>
+                <p id="text_birthday" aria-live="polite"></p>
             </div>
         </section>
 
-        <section data-game-category="numeric">
-            <div class="container">
+        <section class="calculator-section" data-game-category="numeric">
+            <div class="container calculator-panel">
                 <h1 class="section-title">Калькулятор</h1>
                 <details class="game-guide">
                     <summary>Як користуватись?</summary>
@@ -176,7 +206,10 @@
                         <p class="dino-modal-title">Гра закінчилась</p>
                         <p class="dino-modal-score"></p>
                         <p class="dino-modal-record"></p>
-                        <button class="dino-modal-btn" type="button">Зіграти ще раз</button>
+                        <div class="dino-modal-actions">
+                            <button class="dino-modal-btn" type="button">Зіграти ще раз</button>
+                            <button class="dino-modal-end-btn" type="button">Закінчити гру</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -186,7 +219,7 @@
             <h2 class="title section-title">Футбол</h2>
             <details class="game-guide">
                 <summary>Як грати?</summary>
-                <p>Натисніть «Грати», наведіть курсор у потрібний бік і затисніть мишку. Відпустіть її, коли стрілка стане достатньо довгою, щоб м’яч долетів до воріт.</p>
+                <p>Натисніть «Грати», наведіть стрілку мишкою або пальцем, затисніть поле для сили удару та відпустіть, щоб м’яч полетів у ворота.</p>
             </details>
             <div class="field">
                 <label class="football-difficulty">
@@ -197,6 +230,7 @@
                         <option value="hard">Складна</option>
                     </select>
                 </label>
+                <button class="football-stop-btn" type="button">Зупинити</button>
                 <div class="mid-line"></div>
                 <div class="center-circle"></div>
                 <div class="ball" id="ball">
@@ -408,8 +442,11 @@
                 <li class="scientists-btn-item">
                     <button id="older" class="scientists-btn">Знайти вченого, який прожив найдовше і вченого, який прожив найменше</button>
                 </li>
-                <li class="scientists-btn-item">
+                <li class="scientists-btn-item scientists-wide-item">
                     <button id="a-a" class="scientists-btn">Знайти вчених, в яких співпадають перші літери імені і прізвища</button>
+                </li>
+                <li class="scientists-btn-item scientists-reset-item">
+                    <button id="scientists-reset" class="scientists-btn scientists-reset-btn" type="button">Скинути фільтр</button>
                 </li>
             </ul>
         </section>
@@ -439,11 +476,12 @@
                 </form>
                 <p class="describe">*Підписавшись, Ви зможете отримувати інформацію про новинки на сайті</p>
                 <div id="subscribe-modal">
-                    <div id="subscribe-modal-window" class="subscribe-modal-window">
-                        <p>Дякую за підписку!</p>
-                        <img class="icon top-left" src="./images/sword.svg" alt="">
+                <div id="subscribe-modal-window" class="subscribe-modal-window">
+                    <button class="subscribe-modal-close" type="button" aria-label="Закрити"></button>
+                    <p>Дякую за підписку!</p>
+                    <img class="icon top-left" src="./images/sword.svg" alt="">
                         <img class="icon bottom-left" src="./images/puzzle.svg" alt="">
-                        <img class="icon top-right" src="./images/javascript.svg" alt="">
+                        <img class="icon top-right" src="./images/game-development 1.png" alt="">
                         <img class="icon bottom-right" src="./images/coin.png" alt="">
                     </div>
                 </div>

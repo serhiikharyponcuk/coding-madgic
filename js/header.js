@@ -6,7 +6,7 @@ const header = document.querySelector("header");
 const footer = document.querySelector("footer");
 const main = document.querySelector("main");
 const teamSection = document.querySelector(".team-section");
-const showAllMobileBtn = document.querySelector("#show-all-mobile");
+const resetFilterButtons = document.querySelectorAll("#show-all, #show-all-mobile");
 const teamButtons = document.querySelectorAll(".our-team, #team-mobile");
 const contactButtons = document.querySelectorAll(".contacts, #contacts-mobile");
 const themeButtons = document.querySelectorAll(".theme-btn");
@@ -36,10 +36,13 @@ themeButtons.forEach((themeButton) => {
     });
 });
 
-showAllMobileBtn.addEventListener("click", () => {
-    showAllSections();
-    closeMobileFilterMenu();
-    scrollToElement(main);
+resetFilterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        showAllSections();
+        gamesFilter.classList.add("hidden");
+        closeMobileFilterMenu();
+        scrollToElement(main);
+    });
 });
 
 teamButtons.forEach((button) => {

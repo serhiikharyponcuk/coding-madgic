@@ -11,6 +11,7 @@ const dinoModal = document.querySelector(".dino-modal");
 const dinoModalScore = document.querySelector(".dino-modal-score");
 const dinoModalRecord = document.querySelector(".dino-modal-record");
 const dinoModalBtn = document.querySelector(".dino-modal-btn");
+const dinoModalEndBtn = document.querySelector(".dino-modal-end-btn");
 
 let isDinoGameStarted = false;
 let isDinoJumping = false;
@@ -41,6 +42,7 @@ dinoRecordText.textContent = dinoRecord;
 
 dinoStartBtn.addEventListener("click", startDinoGame);
 dinoModalBtn.addEventListener("click", startDinoGame);
+dinoModalEndBtn.addEventListener("click", finishDinoGameSession);
 
 dinoModal.addEventListener("click", (event) => {
   if (event.target === dinoModal) {
@@ -373,6 +375,13 @@ function showDinoModal() {
 function hideDinoModal() {
   dinoModal.classList.remove("show");
   dinoModal.setAttribute("aria-hidden", "true");
+}
+
+// Закриває модалку після завершення гри, не запускаючи новий раунд.
+function finishDinoGameSession() {
+  hideDinoModal();
+  dinoStartBtn.removeAttribute("disabled");
+  dinoStartBtn.textContent = "Почати гру";
 }
 
 // Ховає всі перешкоди і повертає їх за правий край.

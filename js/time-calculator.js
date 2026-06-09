@@ -12,30 +12,37 @@ timecalcMinutesInput.addEventListener("keydown", (event) => {
 
 // Запускає калькулятор часу після кліку або натискання Enter.
 function calculateTime() {
-  const minutes = parseInt(timecalcMinutesInput.value);
-  if (isNaN(minutes) || minutes < 0) {
-    timecalcResult.textContent = "Будь ласка, введіть правильне число хвилин.";
+  const minutesValue = timecalcMinutesInput.value.trim();
+  const minutes = Number(minutesValue);
+
+  if (minutesValue === "") {
+    showTimecalcResult("Введіть кількість хвилин", true);
     return;
   }
-  
-  const days = Math.floor(minutes / (24 * 60));
-  const hours = Math.floor((minutes % (24 * 60)) / 60);
+
+  if (!Number.isInteger(minutes)) {
+    showTimecalcResult("Введіть ціле число хвилин", true);
+    return;
+  }
+
+  if (minutes < 0) {
+    showTimecalcResult("Введіть 0 або більше хвилин", true);
+    return;
+  }
+
+  const days = Math.floor(minutes / 1440);
+  const hours = Math.floor((minutes % 1440) / 60);
   const remainingMinutes = minutes % 60;
-  console.log(minutes, days, hours, remainingMinutes);
-  timecalcResult.textContent = `${minutes} хвилин це ${days} днів, ${hours} годин і ${remainingMinutes} хвилин.`;
 
-  /*
-    ПЛАН РОБОТИ
-
-    1. Взяти значення з timecalcMinutesInput.
-    2. Перетворити його на число.
-    3. Перевірити, що користувач ввів правильне число хвилин.
-    4. Порахувати:
-       - скільки це днів;
-       - скільки годин залишилось;
-       - скільки хвилин залишилось.
-    5. Красиво вивести результат у timecalcResult.
-    6. Якщо значення неправильне, показати підказку замість результату.
-  */
+  showTimecalcResult(`${days} дн. ${hours} год. ${remainingMinutes} хв.`, false);
 }
-console.log("Калькулятор часу завантажено.");
+
+// Оновлює текст результату і запускає анімацію успіху або помилки.
+function showTimecalcResult(text, isError) {
+  timecalcResult.textContent = text;
+  timecalcResult.classList.remove("timecalc-ready", "timecalc-error");
+
+  requestAnimationFrame(() => {
+    timecalcResult.classList.add(isError ? "timecalc-error" : "timecalc-ready");
+  });
+}

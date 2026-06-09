@@ -8,78 +8,83 @@ let selectedCalculatorOperation = null;
 
 calculatorOperationButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    chooseCalculatorOperation(button.textContent);
+    chooseCalculatorOperation(button);
   });
 });
 
 calculatorEqualsButton.addEventListener("click", calculateNumbers);
 
-calculatorSecondInput.addEventListener("keydown", (event) => {
-  if (event.key === "Enter") {
-    calculateNumbers();
-  }
+[calculatorFirstInput, calculatorSecondInput].forEach((input) => {
+  input.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      calculateNumbers();
+    }
+  });
 });
 
-// Запам'ятовує, яку дію вибрав користувач: +, -, * або /.
-function chooseCalculatorOperation(operation) {
-  if (operation === selectedCalculatorOperation) {
-    return; // Якщо користувач вибрав ту ж дію, нічого не робимо.
-  }
-  selectedCalculatorOperation = operation;
-  /*
-    ПЛАН РОБОТИ
+// Запам'ятовує обрану математичну дію і підсвічує її кнопку.
+function chooseCalculatorOperation(button) {
+  selectedCalculatorOperation = button.textContent.trim();
 
-    1. Записати operation у selectedCalculatorOperation.
-    2. За бажанням додати активний клас на вибрану кнопку.
-    3. Прибрати активний клас з інших кнопок.
-  */
+  calculatorOperationButtons.forEach((operationButton) => {
+    operationButton.classList.remove("active");
+  });
+
+  button.classList.add("active");
+  showCalculatorResult("Готово", false);
 }
 
-// Виконує обрану математичну дію над двома числами.
+// Бере два числа, виконує обрану дію і показує результат.
 function calculateNumbers() {
-  const num1 = parseFloat(calculatorFirstInput.value.trim());
-  const num2 = parseFloat(calculatorSecondInput.value.trim());
-  if (isNaN(num1) || isNaN(num2)) {
-    return;
-  }
-  if (!selectedCalculatorOperation) {
-    return;
-  }
-  let result;
-  switch (selectedCalculatorOperation) {
-    case "+":
-      result = num1 + num2;
-      break;
-    case "-":
-      result = num1 - num2;
-      break;
-    case "*":
-      result = num1 * num2;
-      break;
-    case "/":
-      if (num2 === 0) {
-        calculatorResultInput.value = "Помилка: ділення на нуль";
-        return;
-      }
-      result = num1 / num2;
-      break;
-    default:
-      return;
-  }
-  calculatorResultInput.value = result;
-  
-  /*
-    ПЛАН РОБОТИ
+  const firstValue = calculatorFirstInput.value.trim();
+  const secondValue = calculatorSecondInput.value.trim();
+  const num1 = Number(firstValue);
+  const num2 = Number(secondValue);
 
-    1. Взяти значення з calculatorFirstInput.
-    2. Взяти значення з calculatorSecondInput.
-    3. Перетворити обидва значення на числа.
-    4. Перевірити, що обидва значення є числами.
-    5. Перевірити, що користувач обрав математичну дію.
-    6. Якщо дія "+", додати числа.
-    7. Якщо дія "-", відняти числа.
-    8. Якщо дія "*", помножити числа.
-    9. Якщо дія "/", перевірити ділення на нуль і поділити числа.
-    10. Записати результат у calculatorResultInput.
-  */
+  if (firstValue === "" || secondValue === "" || Number.isNaN(num1) || Number.isNaN(num2)) {
+    showCalculatorResult("Введіть два числа", true);
+    return;
+  }
+
+  if (!selectedCalculatorOperation) {
+    showCalculatorResult("Оберіть дію", true);
+    return;
+  }
+
+  if (selectedCalculatorOperation === "/" && num2 === 0) {
+    showCalculatorResult("На нуль ділити не можна", true);
+    return;
+  }
+
+  const result = getCalculatorResult(num1, num2);
+  const formattedResult = Number.isInteger(result) ? result : Number(result.toFixed(2));
+
+  showCalculatorResult(formattedResult, false);
+}
+
+// Окремо рахує результат, щоб основна функція залишалась простою.
+function getCalculatorResult(num1, num2) {
+  if (selectedCalculatorOperation === "+") {
+    return num1 + num2;
+  }
+
+  if (selectedCalculatorOperation === "-") {
+    return num1 - num2;
+  }
+
+  if (selectedCalculatorOperation === "*") {
+    return num1 * num2;
+  }
+
+  return num1 / num2;
+}
+
+// Виводить текст у поле результату і запускає потрібну анімацію.
+function showCalculatorResult(value, isError) {
+  calculatorResultInput.value = value;
+  calculatorResultInput.classList.remove("result-ready", "result-error");
+
+  requestAnimationFrame(() => {
+    calculatorResultInput.classList.add(isError ? "result-error" : "result-ready");
+  });
 }

@@ -94,12 +94,15 @@ const removeNameStartsWithABtn = document.querySelector("#name-a");
 const youngestScientistBtn = document.querySelector("#younger");
 const longestAndShortestLifeBtn = document.querySelector("#older");
 const sameFirstLettersBtn = document.querySelector("#a-a");
+const resetScientistsBtn = document.querySelector("#scientists-reset");
 const scientistsList = document.querySelector(".scientists-list");
 const scientistCards = scientistsList.querySelectorAll(".scientists-item");
+const scientistsButtons = document.querySelectorAll(".scientists-btn");
 
 bornIn19CenturyBtn.addEventListener("click", () => {
     const scientistsFilterBorn = scientists.filter(({ born }) => born >= 1800 && born <= 1900);
 
+    setActiveScientistsButton(bornIn19CenturyBtn);
     scientistsRender(scientistsFilterBorn);
 });
 
@@ -108,6 +111,7 @@ sortByAlphabetBtn.addEventListener("click", () => {
         a.name.localeCompare(b.name)
     );
 
+    setActiveScientistsButton(sortByAlphabetBtn);
     scientistsRender(scientistsSortABC);
 });
 
@@ -116,6 +120,7 @@ sortByLifetimeBtn.addEventListener("click", () => {
         (a.dead - a.born) - (b.dead - b.born)
     );
 
+    setActiveScientistsButton(sortByLifetimeBtn);
     scientistsRender(scientistsSortYears);
 });
 
@@ -124,6 +129,7 @@ youngestScientistBtn.addEventListener("click", () => {
         b.born - a.born
     );
 
+    setActiveScientistsButton(youngestScientistBtn);
     scientistsRender([scientistsLatestBorn[0]]);
 });
 
@@ -132,6 +138,7 @@ albertBornBtn.addEventListener("click", () => {
         scientist.name === "Albert"
     );
 
+    setActiveScientistsButton(albertBornBtn);
     scientistsRender(einsteinBorn);
 });
 
@@ -140,6 +147,7 @@ surnameStartsWithCBtn.addEventListener("click", () => {
         scientist.surname[0] === "C"
     );
 
+    setActiveScientistsButton(surnameStartsWithCBtn);
     scientistsRender(scientistsLetterC);
 });
 
@@ -148,6 +156,7 @@ removeNameStartsWithABtn.addEventListener("click", () => {
         scientist.name[0] !== "A"
     );
 
+    setActiveScientistsButton(removeNameStartsWithABtn);
     scientistsRender(scientistsWithoutA);
 });
 
@@ -159,6 +168,7 @@ longestAndShortestLifeBtn.addEventListener("click", () => {
     const longestLife = scientistsLife[0];
     const shortestLife = scientistsLife[scientistsLife.length - 1];
 
+    setActiveScientistsButton(longestAndShortestLifeBtn);
     scientistsRender([longestLife, shortestLife]);
 });
 
@@ -167,7 +177,13 @@ sameFirstLettersBtn.addEventListener("click", () => {
         scientist.name[0] === scientist.surname[0]
     );
 
+    setActiveScientistsButton(sameFirstLettersBtn);
     scientistsRender(sameFirstLetters);
+});
+
+resetScientistsBtn.addEventListener("click", () => {
+    clearActiveScientistsButton();
+    scientistsRender(scientists);
 });
 
 function scientistsRender(scientistsToRender) {
@@ -186,6 +202,20 @@ function scientistsRender(scientistsToRender) {
             <p class="scientists-ful-name">${scientist.name} ${scientist.surname}</p>
             <p class="scientists-live">${scientist.born}-${scientist.dead}</p>
         `;
+    });
+}
+
+function setActiveScientistsButton(activeButton) {
+    scientistsButtons.forEach((button) => {
+        button.classList.remove("scientists-btn-active");
+    });
+
+    activeButton.classList.add("scientists-btn-active");
+}
+
+function clearActiveScientistsButton() {
+    scientistsButtons.forEach((button) => {
+        button.classList.remove("scientists-btn-active");
     });
 }
 
