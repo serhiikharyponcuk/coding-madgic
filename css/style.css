@@ -3967,6 +3967,7 @@ canvas {
   justify-items: center;
   gap: 8px;
   min-width: 70px;
+  padding: 12px;
 }
 
 .images_rock_paper_scissors button p {
